@@ -1,0 +1,13 @@
+-Abra 2 cmds
+-No primeiro vá pra o diretório desejado, e em seguida coloque o seguinte código:"D:\_php\php.exe -S localhost:8000". EX:
+	D:
+	cd tutores\teste db
+	D:\_php\php.exe -S localhost:8000
+-No segundo vá para o diretório desejado, e em seguida coloque o seguinte código:"D:\_jiboia\python.exe api.py". EX:
+	D:
+	cd tutores\teste db
+	D:\_jiboia\python.exe api.py
+-abra 3 abas com os seguintes links:
+	http://localhost:8000/**Primeiro arquivo**.html
+	http://localhost:8000/**segundo arquivo**.html
+	http://localhost:5000/**nome do db**
