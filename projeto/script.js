@@ -133,16 +133,12 @@ enviar.addEventListener("click", function () {
 
 document.getElementById("enviar").addEventListener("click", function () {
     const dados =
-        encodeURIComponent(alunoAti) +
-        "&turno=" + encodeURIComponent(turnoAti) +
-        "&serie=" + encodeURIComponent(serieAti) +
-        "&escolha1=" + encodeURIComponent(priAti) +
-        "&escolha2=" + encodeURIComponent(segAti) +
-        "&escolha3=" + encodeURIComponent(terAti);
+        encodeURIComponent(alunoAti) + "/" + encodeURIComponent(turnoAti) + "/" + encodeURIComponent(serieAti) + "/" + encodeURIComponent(priAti) + "/" + encodeURIComponent(segAti) + "/" + encodeURIComponent(terAti);
         
         console.log(dados)
 
-    /*fetch("salva.php", {
+    
+    /*/fetch("salva.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -152,5 +148,5 @@ document.getElementById("enviar").addEventListener("click", function () {
         .then(response => response.text())
         .then(data => {
             alert(data);
-        });
-});*/
+        });*/
+});
