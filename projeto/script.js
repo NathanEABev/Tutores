@@ -139,10 +139,10 @@ document.getElementById("enviar").addEventListener("click", function () {
         "&escolha1=" + encodeURIComponent(priAti) +
         "&escolha2=" + encodeURIComponent(segAti) +
         "&escolha3=" + encodeURIComponent(terAti);
+        
+        console.log(dados)
 
-    console.log(dados)
-
-    fetch("salva.php", {
+    /*fetch("salva.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -153,4 +153,4 @@ document.getElementById("enviar").addEventListener("click", function () {
         .then(data => {
             alert(data);
         });
-});
+});*/
