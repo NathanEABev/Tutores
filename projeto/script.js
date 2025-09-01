@@ -133,7 +133,7 @@ enviar.addEventListener("click", function () {
 
 document.getElementById("enviar").addEventListener("click", function () {
     const dados =
-        "nome=" + encodeURIComponent(alunoAti) +
+        encodeURIComponent(alunoAti) +
         "&turno=" + encodeURIComponent(turnoAti) +
         "&serie=" + encodeURIComponent(serieAti) +
         "&escolha1=" + encodeURIComponent(priAti) +
