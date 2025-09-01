@@ -9,18 +9,13 @@
     </head>
 
     <body>
-        <header><a href="index.php">voltar</a></header>
+        <header><a href="index.html">voltar</a></header>
         <aside>
             <h1>Selecione o turno</h1>
             <div id="dTurno">
                 <p>Selecione o periodo em que estuda</p>
                 <select name="sTurno" id="sTurno">
                     <option value="seleTur" selected>Selecione o turno</option>
-                    <?php foreach ($turnos as $linha): ?>
-                    <option value="<?= $linha['value'] ?>">
-                        <?= $linha['title'] ?>
-                    </option>
-                    <?php endforeach; ?>
                     <option value="tur1">teste</option>
                 </select>
             </div>
