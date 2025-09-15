@@ -130,6 +130,9 @@ button:hover {
     align-items: center;
     min-width: 350px;
     height: 500px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .fecha {
@@ -185,4 +188,42 @@ button:hover {
     z-index: 9999;
     width: 300px;
     background-color: red;
+}
+
+.radios {
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+#contentModal {
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    position: fixed;
+    height: 200px;
+    top: calc(50% - 100px);
+    left: calc(50% - 250px);
+    z-index: 10;
+}
+
+#modalTutores {
+    display: none;
+}
+
+#contentModal h1 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#contentModal p {
+    margin-top: 10px;
+}
+
+#contentModal img {
+    position: absolute;
+    right: 0;
+    top: 20;
 }

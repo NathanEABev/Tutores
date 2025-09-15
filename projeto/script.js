@@ -23,7 +23,6 @@ var alunoAti = ""
 
 seleAluno.addEventListener("change", function () {
     alunoAti = seleAluno.value
-    console.log(alunoAti)
 });
 
 //select da primeira opção
@@ -133,16 +132,12 @@ enviar.addEventListener("click", function () {
 
 document.getElementById("enviar").addEventListener("click", function () {
     const dados =
-        "nome=" + encodeURIComponent(alunoAti) +
-        "&turno=" + encodeURIComponent(turnoAti) +
-        "&serie=" + encodeURIComponent(serieAti) +
-        "&escolha1=" + encodeURIComponent(priAti) +
-        "&escolha2=" + encodeURIComponent(segAti) +
-        "&escolha3=" + encodeURIComponent(terAti);
+        encodeURIComponent(alunoAti) + "/" + encodeURIComponent(serieAti) + "/" + encodeURIComponent(priAti) + "/" + encodeURIComponent(segAti) + "/" + encodeURIComponent(terAti);
+        
+        console.log(dados)
 
-    console.log(dados)
-
-    fetch("salva.php", {
+    
+    /*/fetch("salva.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -152,5 +147,5 @@ document.getElementById("enviar").addEventListener("click", function () {
         .then(response => response.text())
         .then(data => {
             alert(data);
-        });
+        });*/
 });
