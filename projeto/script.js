@@ -136,7 +136,10 @@ document.getElementById("enviar").addEventListener("click", function () {
         
         console.log(dados)
 
-    
+        alert('mexe no db')
+        document.getElementById("popConfirma").style.display = "none"
+        cobre.style.display = "none"
+
     /*/fetch("salva.php", {
         method: "POST",
         headers: {
