@@ -227,3 +227,16 @@ button:hover {
     right: 0;
     top: 20;
 }
+
+.exc, .edt {
+    width: 50px;
+    text-align: center;
+}
+
+.TutorName {
+    width: 30%;
+}
+
+#addTutor {
+    margin-bottom: 20px;
+}
