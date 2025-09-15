@@ -69,6 +69,39 @@ mostraTutor.forEach((mostraTutor) => {
     })
 })
 
+//pop-up adicionar tutor
+
+const addTutor = document.getElementById("addTutor")
+const modalAddTutor = document.getElementById("modalTutor")
+const fechaAddTutor = document.getElementById("fechaTutor")
+
+addTutor.addEventListener("click", () => {
+    modalAddTutor.style.display = "block"
+    overlay1.style.display = "block"
+    document.body.style.overflow = "hidden"
+
+    fechaAddTutor.addEventListener("click", function () {
+        modalAddTutor.style.display = "none"
+        overlay1.style.display = "none"
+        document.body.style.overflow = ""
+    })
+
+    overlay1.addEventListener("click", function () {
+        modalAddTutor.style.display = "none"
+        overlay1.style.display = "none"
+        document.body.style.overflow = ""
+    })
+
+    const salvarTutor = document.getElementById("salvarTutor")
+    salvarTutor.addEventListener("click", function () {
+        alert("Substitui pelo código do db")
+
+        modalAddTutor.style.display = "none"
+        overlay1.style.display = "none"
+        document.body.style.overflow = ""
+    })
+})
+
 /*function verificarSelecionado() {
     const selecionado = document.querySelector('input[name="cor"]:checked');
 

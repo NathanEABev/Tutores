@@ -195,7 +195,7 @@ button:hover {
     margin-left: 10px;
 }
 
-#contentModal {
+#contentModal, #contentTutor {
     background-color: white;
     padding: 20px;
     border: 2px solid black;
@@ -209,11 +209,11 @@ button:hover {
     z-index: 10;
 }
 
-#modalTutores {
+#modalTutores, #modalTutor {
     display: none;
 }
 
-#contentModal h1 {
+#contentModal h1, #contentTutor h1 {
     margin-bottom: 20px;
     margin-top: 20px;
 }
@@ -222,10 +222,10 @@ button:hover {
     margin-top: 10px;
 }
 
-#contentModal img {
+#contentModal img, #contentTutor img {
     position: absolute;
     right: 0;
-    top: 20;
+    top: 10;
 }
 
 .exc, .edt {
@@ -239,4 +239,18 @@ button:hover {
 
 #addTutor {
     margin-bottom: 20px;
+}
+
+#salvarTutor {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.inputsTutor {
+    margin-top: 15px;
+}
+
+.inputsTutor input {
+    width: 200px;
 }
