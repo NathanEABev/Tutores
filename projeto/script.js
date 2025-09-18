@@ -132,23 +132,22 @@ enviar.addEventListener("click", function () {
 
 document.getElementById("enviar").addEventListener("click", function () {
     const dados =
-        encodeURIComponent(alunoAti) + "/" + encodeURIComponent(serieAti) + "/" + encodeURIComponent(priAti) + "/" + encodeURIComponent(segAti) + "/" + encodeURIComponent(terAti);
-        
-        console.log(dados)
+        "nome=" + encodeURIComponent(alunoAti) + "&sala=" + encodeURIComponent(serieAti) + "&turno=" + encodeURIComponent(turnoAti) + "&opcao1=" + encodeURIComponent(priAti) + "&opcao2=" + encodeURIComponent(segAti) + "&opcao3=" + encodeURIComponent(terAti);
 
-        alert('mexe no db')
-        document.getElementById("popConfirma").style.display = "none"
-        cobre.style.display = "none"
+    console.log(dados)
 
-    /*/fetch("salva.php", {
+    fetch("salva.php", {
         method: "POST",
         headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/x-www-form-urlencoded"
         },
         body: dados
     })
-        .then(response => response.text())
+        .then(Response => Response.text())
         .then(data => {
             alert(data);
-        });*/
+        });
+
+    document.getElementById("popConfirma").style.display = "none"
+    cobre.style.display = "none"
 });

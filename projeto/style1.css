@@ -9,7 +9,7 @@ aside {
 }
 
 #fichas {
-    width: calc(100% - 40px);
+    width: 100%;
     overflow-x: auto;
     white-space: nowrap;
     background-color: rgb(220, 220, 220);
@@ -242,6 +242,13 @@ button:hover {
 }
 
 #salvarTutor {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#edtTutor {
+    display: none;
     position: absolute;
     bottom: 20px;
     right: 20px;
