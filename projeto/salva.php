@@ -3,7 +3,7 @@ include "conexao.php";
 
 $nome = $_POST['nome'];
 $sala = $_POST['sala'];
-$turno = $_POST['turno'];
+$turno = $_POST['turno'] ?? 'unico';
 $op1 = $_POST['opcao1'];
 $op2 = $_POST['opcao2'];
 $op3 = $_POST['opcao3'];

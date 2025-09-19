@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (data.turnos === "1") {
                     document.getElementById("aTurno").style.display = "none";
                     seleSerie.disabled = false;
+                    turnoAti = "unico"
                 } else {
                     document.getElementById("aTurno").style.display = "block";
                 }
