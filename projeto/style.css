@@ -12,16 +12,24 @@ aside {
     margin-bottom: 0;
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
     margin-bottom: 10px;
 }
 
 select {
     padding: 7px 10px;
     border-radius: 15px;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-#dSerie, #dAluno, #dTurno {
+#dSerie,
+#dAluno,
+#dTurno {
     padding: 0 10PX;
 }
 
@@ -46,7 +54,8 @@ button:hover {
     background-color: rgb(20, 66, 165);
 }
 
-#pErroTutor, #pErroEnvia {
+#pErroTutor,
+#pErroEnvia {
     color: red;
     margin: 5px 20px 15px;
     font-size: 20px;
@@ -77,7 +86,7 @@ button:hover {
     transform: translate(-50%, -50%);
     align-items: center;
     width: 200px;
-    height: 250px;
+    height: 300px;
 }
 
 #popConfirma img {

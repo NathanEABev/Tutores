@@ -45,6 +45,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         });
+
+    fetch("tutor.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "acao=listar"
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "success") {
+                const selects = [
+                    document.getElementById("primeira"),
+                    document.getElementById("segunda"),
+                    document.getElementById("terceira")
+                ];
+
+                data.tutores.forEach(tutor => {
+                    const option = document.createElement("option");
+                    option.value = tutor.id;
+                    option.textContent = `${tutor.nome} - ${tutor.clube}`;
+                    selects.forEach(sel => sel.appendChild(option.cloneNode(true)));
+                });
+            } else {
+                console.error(data.message);
+            }
+        })
+        .catch(err => console.error("Erro ao carregar tutores:", err));
 });
 
 //select do Turno
@@ -235,4 +261,6 @@ document.getElementById("enviar").addEventListener("click", function () {
 
     document.getElementById("popConfirma").style.display = "none"
     cobre.style.display = "none"
+
+    window.location.reload(); window.location.reload();
 });

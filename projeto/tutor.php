@@ -68,16 +68,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif ($acao === "listar") {
         $sql = "SELECT id, nome, clube FROM tutores ORDER BY id DESC";
         $result = $conn->query($sql);
-        $tutores = [];
 
-        while ($row = $result->fetch_assoc()) {
-            $tutores[] = $row;
+        if ($result && $result->num_rows > 0) {
+            $tutores = [];
+            while ($row = $result->fetch_assoc()) {
+                $tutores[] = [
+                    "id" => $row["id"],
+                    "nome" => $row["nome"],
+                    "clube" => $row["clube"]
+                ];
+            }
+            echo json_encode(["status" => "success", "tutores" => $tutores]);
+        } else {
+            echo json_encode(["status" => "error", "message" => "Nenhum tutor encontrado."]);
         }
-
-        echo json_encode([
-            "status" => "success",
-            "tutores" => $tutores
-        ]);
     } else {
         echo json_encode(["status" => "error", "message" => "Ação inválida"]);
     }
