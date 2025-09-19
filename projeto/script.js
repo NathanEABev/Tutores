@@ -1,5 +1,7 @@
 let modoTurno = "2";
 
+let unico
+
 document.addEventListener("DOMContentLoaded", () => {
     fetch("link.php", {
         method: "POST",
@@ -14,6 +16,30 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("aTurno").style.display = "none";
                     seleSerie.disabled = false;
                     turnoAti = "unico"
+
+                    unico = ["A6", "B6", "C6", "A7", "B7", "C7", "A8", "B8", "C8", "A9", "B9", "C9", "A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"]
+
+                    if (turnoAti != "seleTur") {
+                        seleSerie.innerHTML = '<option value="seleSer" selected>Selecione a série</option>'
+                        seleSerie.disabled = false
+
+                        unico.forEach(item => {
+                            const numero = item.slice(1)
+                            const letra = item[0]
+
+                            const option = document.createElement("option")
+                            option.value = item
+                            option.textContent = `${numero}º ano ${letra}`
+                            seleSerie.appendChild(option)
+                        })
+                    } else {
+                        seleSerie.disabled = true
+                        seleAluno.disabled = true
+                        addAlu.disabled = true
+
+                        seleSerie.innerHTML = '<option value="seleSer" selected>Selecione a série</option>'
+                        seleAluno.innerHTML = '<option value="seleAlu" selected>Selecione seu nome</option>'
+                    }
                 } else {
                     document.getElementById("aTurno").style.display = "block";
                 }
@@ -77,9 +103,9 @@ SeleTerceira.addEventListener("change", function () {
 
 //opções com base no turno
 
-const opSerie = {
+let opSerie = {
     tur1: ["A6", "B6", "C6", "A7", "B7", "C7", "A8", "B8", "C8", "A9", "B9", "C9"],
-    tur2: ["A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"]
+    tur2: ["A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"],
 }
 
 //padrão dos selects

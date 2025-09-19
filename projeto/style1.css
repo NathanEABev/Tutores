@@ -9,11 +9,11 @@ aside {
 }
 
 #fichas {
-    width: 98.5%;
+    width: calc(100% - 20px);
     overflow-x: auto;
     white-space: nowrap;
     background-color: rgb(220, 220, 220);
-    padding: 10px 0 10px 10px;
+    padding: 10px 10px;
     height: 440px;
     display: flex;
     gap: 20px;
