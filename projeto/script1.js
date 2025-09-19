@@ -52,6 +52,34 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         .catch(err => console.error(err))
+
+    const btnSalvar = document.getElementById("salvarTurno");
+
+    fetch("link.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "acao=buscar"
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "success") {
+                document.getElementById("turno" + data.turnos).checked = true;
+            }
+        });
+
+    btnSalvar.addEventListener("click", () => {
+        const selecionado = document.querySelector("input[name='turnos']:checked").value;
+
+        fetch("link.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `acao=salvar&turnos=${selecionado}`
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.message);
+            });
+    });
 })
 
 //scroll horizontal

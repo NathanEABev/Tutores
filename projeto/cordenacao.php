@@ -30,17 +30,17 @@ include "conexao.php";
                 </div>
             </div>
         </div>
-        <aside>
-            <h1>Turnos:</h1>
+        <aside id="aTurnos">
+            <h1>Configuração de turnos:</h1>
             <div class="radios">
-                <input type="radio" name="turnos" id="T1">
+                <input type="radio" name="turnos" value="1" id="turno1">
                 <label for="T1">Turno único</label>
             </div>
             <div class="radios">
-                <input type="radio" name="turnos" id="T2" checked>
-                <label for="T2">2 Turno</label>
+                <input type="radio" name="turnos" value="2" id="turno2">
+                <label for="T2">Turno duplo</label>
             </div>
-            <button id="CTurnos">Salvar alterações</button>
+            <button id="salvarTurno">Salvar alterações</button>
         </aside>
         <aside>
             <h1>Séries ativas:</h1>

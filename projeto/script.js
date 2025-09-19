@@ -1,3 +1,25 @@
+let modoTurno = "2";
+
+document.addEventListener("DOMContentLoaded", () => {
+    fetch("link.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "acao=buscar"
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "success") {
+                modoTurno = data.turnos;
+                if (data.turnos === "1") {
+                    document.getElementById("aTurno").style.display = "none";
+                    seleSerie.disabled = false;
+                } else {
+                    document.getElementById("aTurno").style.display = "block";
+                }
+            }
+        });
+});
+
 //select do Turno
 
 const seleTurno = document.getElementById("sTurno")
@@ -109,30 +131,66 @@ const enviar = document.getElementById("vai")
 const erroEnvio = document.getElementById("pErroEnvia")
 
 enviar.addEventListener("click", function () {
-    if (turnoAti === "seleTur" || serieAti === "seleSer" || alunoAti === "" || priAti === "selePri" || segAti === "seleSeg" || terAti === "seleTer") {
-        erroEnvio.innerText = "Preencha todos as campos a cima"
-    } else if (priAti == segAti || priAti == terAti || segAti == terAti) {
-        erroEnvio.innerText = 'Uma ou mais opções iguais'
+    if (modoTurno === "1") {
+        if (serieAti === "seleSer" || alunoAti === "" || priAti === "selePri" || segAti === "seleSeg" || terAti === "seleTer") {
+            erroEnvio.innerText = "Preencha todos as campos a cima"
+        } else if (priAti == segAti || priAti == terAti || segAti == terAti) {
+            erroEnvio.innerText = 'Uma ou mais opções iguais'
+        } else {
+            erroEnvio.innerText = ""
+
+            document.getElementById("dados").innerHTML = `<strong>Série:</strong> ${seleSerie.querySelector(`option[value="${serieAti}"]`).textContent}<br><strong>Aluno:</strong> ${seleAluno.value}<br><strong>Primeira opção:</strong> ${SelePrimeira.querySelector(`option[value="${priAti}"]`).textContent}<br><strong>Segunda opção:</strong> ${SeleSegunda.querySelector(`option[value="${segAti}"]`).textContent}<br><strong>Terceira opção:</strong> ${SeleTerceira.querySelector(`option[value="${terAti}"]`).textContent}`
+
+            document.getElementById("popConfirma").style.display = "flex"
+            cobre.style.display = "block"
+
+            document.getElementById("fechaC").addEventListener("click", function () {
+                document.getElementById("popConfirma").style.display = "none"
+                cobre.style.display = "none"
+            })
+        }
     } else {
-        erroEnvio.innerText = ""
+        if (turnoAti === "seleTur" || serieAti === "seleSer" || alunoAti === "" || priAti === "selePri" || segAti === "seleSeg" || terAti === "seleTer") {
+            erroEnvio.innerText = "Preencha todos as campos a cima"
+        } else if (priAti == segAti || priAti == terAti || segAti == terAti) {
+            erroEnvio.innerText = 'Uma ou mais opções iguais'
+        } else {
+            erroEnvio.innerText = ""
 
-        document.getElementById("dados").innerHTML = `<strong>Turno:</strong> ${seleTurno.querySelector(`option[value="${turnoAti}"]`).textContent}<br><strong>Série:</strong> ${seleSerie.querySelector(`option[value="${serieAti}"]`).textContent}<br><strong>Aluno:</strong> ${seleAluno.value}<br><strong>Primeira opção:</strong> ${SelePrimeira.querySelector(`option[value="${priAti}"]`).textContent}<br><strong>Segunda opção:</strong> ${SeleSegunda.querySelector(`option[value="${segAti}"]`).textContent}<br><strong>Terceira opção:</strong> ${SeleTerceira.querySelector(`option[value="${terAti}"]`).textContent}`
+            document.getElementById("dados").innerHTML = `<strong>Turno:</strong> ${seleTurno.querySelector(`option[value="${turnoAti}"]`).textContent}<br><strong>Série:</strong> ${seleSerie.querySelector(`option[value="${serieAti}"]`).textContent}<br><strong>Aluno:</strong> ${seleAluno.value}<br><strong>Primeira opção:</strong> ${SelePrimeira.querySelector(`option[value="${priAti}"]`).textContent}<br><strong>Segunda opção:</strong> ${SeleSegunda.querySelector(`option[value="${segAti}"]`).textContent}<br><strong>Terceira opção:</strong> ${SeleTerceira.querySelector(`option[value="${terAti}"]`).textContent}`
 
-        document.getElementById("popConfirma").style.display = "flex"
-        cobre.style.display = "block"
+            document.getElementById("popConfirma").style.display = "flex"
+            cobre.style.display = "block"
 
-        document.getElementById("fechaC").addEventListener("click", function () {
-            document.getElementById("popConfirma").style.display = "none"
-            cobre.style.display = "none"
-        })
+            document.getElementById("fechaC").addEventListener("click", function () {
+                document.getElementById("popConfirma").style.display = "none"
+                cobre.style.display = "none"
+            })
+        }
     }
 });
 
 //enviar confirmação
 
 document.getElementById("enviar").addEventListener("click", function () {
-    const dados =
-        "nome=" + encodeURIComponent(alunoAti) + "&sala=" + encodeURIComponent(serieAti) + "&turno=" + encodeURIComponent(turnoAti) + "&opcao1=" + encodeURIComponent(priAti) + "&opcao2=" + encodeURIComponent(segAti) + "&opcao3=" + encodeURIComponent(terAti);
+    let dados
+
+    if (modoTurno === "1") {
+        dados =
+            "nome=" + encodeURIComponent(alunoAti) +
+            "&sala=" + encodeURIComponent(serieAti) +
+            "&opcao1=" + encodeURIComponent(priAti) +
+            "&opcao2=" + encodeURIComponent(segAti) +
+            "&opcao3=" + encodeURIComponent(terAti);
+    } else {
+        dados =
+            "nome=" + encodeURIComponent(alunoAti) +
+            "&sala=" + encodeURIComponent(serieAti) +
+            "&turno=" + encodeURIComponent(turnoAti) +
+            "&opcao1=" + encodeURIComponent(priAti) +
+            "&opcao2=" + encodeURIComponent(segAti) +
+            "&opcao3=" + encodeURIComponent(terAti);
+    }
 
     console.log(dados)
 

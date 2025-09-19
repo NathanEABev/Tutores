@@ -13,7 +13,7 @@ include "conexao.php";
 
     <body>
         <header><a href="index.html">voltar</a></header>
-        <aside>
+        <aside id="aTurno">
             <h1>Selecione o turno</h1>
             <div id="dTurno">
                 <p>Selecione o periodo em que estuda</p>
