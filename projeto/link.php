@@ -35,7 +35,15 @@ if ($acao === "salvar") {
         echo json_encode(["status" => "error", "message" => "Nenhuma configuração encontrada."]);
     }
 } elseif ($acao === "listarAlunos") {
-    $sql = "SELECT id, nome, sala, turno, opcao1 FROM alunos";
+    $sql = "SELECT a.id, a.nome, a.sala, a.turno, 
+               a.opcao1, a.opcao2, a.opcao3,
+               t1.nome AS nome_op1,
+               t2.nome AS nome_op2,
+               t3.nome AS nome_op3
+        FROM alunos a
+        LEFT JOIN tutores t1 ON a.opcao1 = t1.id
+        LEFT JOIN tutores t2 ON a.opcao2 = t2.id
+        LEFT JOIN tutores t3 ON a.opcao3 = t3.id";
     $result = $conn->query($sql);
 
     if ($result && $result->num_rows > 0) {
@@ -46,7 +54,12 @@ if ($acao === "salvar") {
                 "nome" => $row["nome"],
                 "serie" => $row["sala"],
                 "turno" => $row["turno"],
-                "op1" => $row["opcao1"]
+                "op1" => $row["opcao1"],
+                "op2" => $row["opcao2"],
+                "op3" => $row["opcao3"],
+                "nome_op1" => $row["nome_op1"],
+                "nome_op2" => $row["nome_op2"],
+                "nome_op3" => $row["nome_op3"]
             ];
         }
         echo json_encode(["status" => "success", "alunos" => $alunos]);

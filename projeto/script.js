@@ -1,8 +1,13 @@
+//variáveis de inicio
+
 let modoTurno = "2";
 
 let unico
 
+//identificação de turno e carregamento de tutores
+
 document.addEventListener("DOMContentLoaded", () => {
+    //verifica o modo de turno
     fetch("link.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -45,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         });
+
+    //carrega os tutores
 
     fetch("tutor.php", {
         method: "POST",

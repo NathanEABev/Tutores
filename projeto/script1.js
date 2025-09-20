@@ -1,4 +1,8 @@
+//carregamento de tutores e alunos
+
 document.addEventListener("DOMContentLoaded", () => {
+    //criação das fichas de tutores
+
     fetch("tutor.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -42,11 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         </table>
                     `
                     fichas.appendChild(novaDiv)
-
-
                 })
 
                 aplicarEventos()
+
+                //inserção dos alunos nas fichas correspondentes
 
                 fetch("link.php", {
                     method: "POST",
@@ -61,6 +65,17 @@ document.addEventListener("DOMContentLoaded", () => {
                                 if (ficha) {
                                     const tabela = ficha.querySelector("table")
                                     const linhaAluno = document.createElement("tr")
+                                    linhaAluno.dataset.nome = aluno.nome
+                                    linhaAluno.dataset.serie = aluno.serie
+                                    linhaAluno.dataset.op1 = aluno.op1
+                                    linhaAluno.dataset.op2 = aluno.op2
+                                    linhaAluno.dataset.op3 = aluno.op3
+
+                                    linhaAluno.dataset.nomeOp1 = aluno.nome_op1
+linhaAluno.dataset.nomeOp2 = aluno.nome_op2
+linhaAluno.dataset.nomeOp3 = aluno.nome_op3
+
+
                                     linhaAluno.innerHTML = `
                     <td class="base">${aluno.nome}</td>
                     <td class="td-serie">${aluno.serie}</td>
@@ -80,6 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         })
         .catch(err => console.error(err))
+
+    //configurações do modo de turnos
 
     const btnSalvar = document.getElementById("salvarTurno");
 
@@ -112,14 +129,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //scroll horizontal
 
-const scrollCont = document.getElementById("fichas")
+/*const scrollCont = document.getElementById("fichas")
 
 scrollCont.addEventListener("wheel", (e) => {
     e.preventDefault()
     scrollCont.scrollLeft += e.deltaY * 3.5
-})
-
-//informações da direção
+})*/
 
 //pop-up salas
 
@@ -222,6 +237,8 @@ overlay1.addEventListener("click", function () {
     document.body.style.overflow = ""
 })
 
+//salvamento dinâmico de tutores
+
 const salvarTutor = document.getElementById("salvarTutor")
 salvarTutor.addEventListener("click", () => {
     fetch("tutor.php", {
@@ -283,6 +300,8 @@ salvarTutor.addEventListener("click", () => {
     overlay1.style.display = "none"
     document.body.style.overflow = ""
 })
+
+//edição e exclusão de tutores
 
 function aplicarEventos() {
     document.querySelectorAll(".edt").forEach(edtBtn => {
@@ -384,9 +403,31 @@ edtTutor.addEventListener("click", () => {
     document.body.style.overflow = ""
 })
 
+//abrir modal dos tutores
+
 function clickModal() {
     document.querySelectorAll(".td-mostra").forEach(mostra => {
         mostra.onclick = () => {
+            const linha = mostra.closest("tr")
+            const nome = linha.dataset.nome
+            const nomeOp1 = linha.dataset.nomeOp1
+            const nomeOp2 = linha.dataset.nomeOp2
+            const nomeOp3 = linha.dataset.nomeOp3
+
+            document.getElementById("nomeFicha").textContent = nome
+
+            const spanPri = document.getElementById("priOP")
+            spanPri.textContent = nomeOp1
+            spanPri.dataset.id = linha.dataset.op1
+
+            const spanSeg = document.getElementById("segOP")
+            spanSeg.textContent = nomeOp2
+            spanSeg.dataset.id = linha.dataset.op2
+
+            const spanTer = document.getElementById("terOP")
+            spanTer.textContent = nomeOp3
+            spanTer.dataset.id = linha.dataset.op3
+
             modalTutor.style.display = "block"
             overlay1.style.display = "block"
             document.body.style.overflow = "hidden"
@@ -405,13 +446,3 @@ function clickModal() {
         }
     })
 }
-
-/*function verificarSelecionado() {
-    const selecionado = document.querySelector('input[name="cor"]:checked');
-
-    if (selecionado) {
-        alert("Selecionado: " + selecionado.value);
-    } else {
-        alert("Nenhuma opção selecionada.");
-    }
-}*/

@@ -36,6 +36,10 @@ aside {
     text-align: center;
 }
 
+.base {
+    max-width: 210px;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
