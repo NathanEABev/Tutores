@@ -256,7 +256,7 @@ document.getElementById("enviar").addEventListener("click", function () {
     })
         .then(Response => Response.text())
         .then(data => {
-            alert(data);
+            alert("salvo com sucesso");
         });
 
     document.getElementById("popConfirma").style.display = "none"

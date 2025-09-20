@@ -12,8 +12,23 @@ $sql = "INSERT INTO alunos (nome, sala, turno, opcao1, opcao2, opcao3)
         VALUES ('$nome', '$sala', '$turno', $op1, $op2, $op3)";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Dados salvos com sucesso!";
+    echo json_encode([
+        "status" => "success",
+        "aluno" => [
+            "nome" => $nome,
+            "serie" => $sala,
+            "turno" => $turno,
+            "op1" => $op1,
+            "op2" => $op2,
+            "op3" => $op3
+        ]
+    ]);
 } else {
-    echo "Erro: " . $conn->error;
+    echo json_encode([
+        "status" => "error",
+        "message" => $conn->error
+    ]);
 }
+
+$conn->close();
 ?>

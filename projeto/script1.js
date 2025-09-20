@@ -47,6 +47,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
 
                 aplicarEventos()
+
+                fetch("link.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: "acao=listarAlunos"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === "success") {
+                            data.alunos.forEach(aluno => {
+                                const ficha = document.getElementById(aluno.op1)
+                                if (ficha) {
+                                    const tabela = ficha.querySelector("table")
+                                    const linhaAluno = document.createElement("tr")
+                                    linhaAluno.innerHTML = `
+                    <td class="base">${aluno.nome}</td>
+                    <td class="td-serie">${aluno.serie}</td>
+                    <td class="td-tutores"><span class="td-mostra">Mostrar</span></td>
+                `
+                                    tabela.appendChild(linhaAluno)
+                                    clickModal()
+                                }
+                            })
+                        } else {
+                            console.warn(data.message)
+                        }
+                    })
+                    .catch(err => console.error(err))
             } else {
                 alert("Erro ao carregar lista de tutores.")
             }
@@ -356,6 +384,27 @@ edtTutor.addEventListener("click", () => {
     document.body.style.overflow = ""
 })
 
+function clickModal() {
+    document.querySelectorAll(".td-mostra").forEach(mostra => {
+        mostra.onclick = () => {
+            modalTutor.style.display = "block"
+            overlay1.style.display = "block"
+            document.body.style.overflow = "hidden"
+
+            fechaTutores.onclick = () => {
+                modalTutor.style.display = "none"
+                overlay1.style.display = "none"
+                document.body.style.overflow = ""
+            }
+
+            overlay1.onclick = () => {
+                modalTutor.style.display = "none"
+                overlay1.style.display = "none"
+                document.body.style.overflow = ""
+            }
+        }
+    })
+}
 
 /*function verificarSelecionado() {
     const selecionado = document.querySelector('input[name="cor"]:checked');
