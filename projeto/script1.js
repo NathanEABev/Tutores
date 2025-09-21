@@ -36,7 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     novaDiv.classList.add("iten")
                     novaDiv.id = tutor.id
                     novaDiv.innerHTML = `
-                        <h1>${tutor.nome}</h1>
+                        <div>
+                            <h1>${tutor.nome}</h1>
+                            <h2>Alunos: <span class="numAl">0</span></h2>
+                        </div>
                         <table>
                             <tr>
                                 <td class="base">Nome</td>
@@ -72,8 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
                                     linhaAluno.dataset.op3 = aluno.op3
 
                                     linhaAluno.dataset.nomeOp1 = aluno.nome_op1
-linhaAluno.dataset.nomeOp2 = aluno.nome_op2
-linhaAluno.dataset.nomeOp3 = aluno.nome_op3
+                                    linhaAluno.dataset.nomeOp2 = aluno.nome_op2
+                                    linhaAluno.dataset.nomeOp3 = aluno.nome_op3
 
 
                                     linhaAluno.innerHTML = `
@@ -275,7 +278,10 @@ salvarTutor.addEventListener("click", () => {
                 novaDiv.classList.add("iten")
                 novaDiv.id = data.id
                 novaDiv.innerHTML = `
-                    <h1>${data.nome}</h1>
+                    <div>
+                        <h1>${tutor.nome}</h1>
+                        <h2>Alunos: <span class="numAl">0</span></h2>
+                    </div>
                     <table>
                         <tr>
                             <td class="base">Nome</td>

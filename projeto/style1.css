@@ -31,6 +31,21 @@ aside {
     overflow-y: auto;
 }
 
+.iten div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.iten h1, .iten h2 {
+    display: inline-block;
+    margin: 0 0 5px 0;
+}
+
+.iten h2 {
+    margin-right: 10px;
+}
+
 .td-tutores, .td-serie {
     width: 20%;
     text-align: center;
@@ -38,6 +53,7 @@ aside {
 
 .base {
     max-width: 210px;
+    white-space: normal;
 }
 
 table {
@@ -57,6 +73,7 @@ tr:nth-child(odd) {
 td {
     padding: 10px;
     border: 1px solid #ccc;
+    white-space: normal;
 }
 
 td.texto {
