@@ -53,6 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 aplicarEventos()
 
+                function formatarSerie(serie) {
+                    if (!serie) return "";
+                    const numero = serie.replace(/[^0-9]/g, ""); // só o número
+                    const letra = serie.replace(/[^a-zA-Z]/g, "").toUpperCase(); // só a letra
+                    return `${numero}º${letra}`;
+                }
+
+
                 //inserção dos alunos nas fichas correspondentes
 
                 fetch("link.php", {
@@ -81,10 +89,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                                     linhaAluno.innerHTML = `
                     <td class="base">${aluno.nome}</td>
-                    <td class="td-serie">${aluno.serie}</td>
+                    <td class="td-serie">${formatarSerie(aluno.serie)}</td>
                     <td class="td-tutores"><span class="td-mostra">Mostrar</span></td>
                 `
                                     tabela.appendChild(linhaAluno)
+
+                                    const contador = ficha.querySelector(".numAl");
+                                    contador.textContent = tabela.querySelectorAll("tr").length - 1;
+
                                     clickModal()
                                 }
                             })
@@ -279,7 +291,7 @@ salvarTutor.addEventListener("click", () => {
                 novaDiv.id = data.id
                 novaDiv.innerHTML = `
                     <div>
-                        <h1>${tutor.nome}</h1>
+                        <h1>${data.nome}</h1>
                         <h2>Alunos: <span class="numAl">0</span></h2>
                     </div>
                     <table>
