@@ -97,8 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
                                     tabela.appendChild(linhaAluno)
 
                                     const contador = ficha.querySelector(".numAl");
-                                    contador.textContent = tabela.querySelectorAll("tr").length - 1;
+                                    let numAlu = tabela.querySelectorAll("tr").length - 1;
 
+                                    contador.textContent = numAlu;
+
+                                    verificaNumAl(ficha)
                                     clickModal()
                                 }
                             })
@@ -435,20 +438,6 @@ function clickModal() {
             const nomeOp2 = linha.dataset.nomeOp2;
             const nomeOp3 = linha.dataset.nomeOp3;
 
-/*linhaAluno.dataset.id = aluno.id;
-                                    linhaAluno.dataset.nome = aluno.nome
-                                    linhaAluno.dataset.serie = aluno.serie
-                                    linhaAluno.dataset.atual = aluno.atual
-                                    linhaAluno.dataset.op1 = aluno.op1
-                                    linhaAluno.dataset.op2 = aluno.op2
-                                    linhaAluno.dataset.op3 = aluno.op3
-
-                                    linhaAluno.dataset.atual = aluno.atual
-                                    linhaAluno.dataset.nomeOp1 = aluno.nome_op1
-                                    linhaAluno.dataset.nomeOp2 = aluno.nome_op2
-                                    linhaAluno.dataset.nomeOp3 = aluno.nome_op3
-*/
-
             document.getElementById("nomeFicha").textContent = nome;
 
             // Preenche spans
@@ -535,11 +524,14 @@ function mudarAlunoDeTutor(idAluno, tutorDestino) {
                 // --- Atualiza no DOM ---
 
                 // remove aluno da tabela atual
+                const fichaAtual = document.getElementById(atual);
+                const tabelaAtual = fichaAtual.querySelector("table");
                 linha.remove();
 
-                // atualiza contador do tutor atual
-                const contadorAtual = document.getElementById(atual).querySelector(".numAl");
-                contadorAtual.textContent = document.getElementById(atual).querySelectorAll("table tr").length - 1;
+                // atualiza contador e cor da ficha atual
+                const contadorAtual = fichaAtual.querySelector(".numAl");
+                contadorAtual.textContent = tabelaAtual.querySelectorAll("tr").length - 1;
+                verificaNumAl(fichaAtual);
 
                 // adiciona na tabela do tutor destino
                 const fichaDestino = document.getElementById(tutorDestino);
@@ -547,9 +539,10 @@ function mudarAlunoDeTutor(idAluno, tutorDestino) {
                     const tabelaDestino = fichaDestino.querySelector("table");
                     tabelaDestino.appendChild(linha);
 
-                    // atualiza contador do tutor destino
+                    // atualiza contador e cor da ficha destino
                     const contadorDestino = fichaDestino.querySelector(".numAl");
                     contadorDestino.textContent = tabelaDestino.querySelectorAll("tr").length - 1;
+                    verificaNumAl(fichaDestino);
                 }
 
                 alert("Aluno movido com sucesso!");
@@ -557,9 +550,28 @@ function mudarAlunoDeTutor(idAluno, tutorDestino) {
                 modalTutor.style.display = "none";
                 overlay1.style.display = "none";
                 document.body.style.overflow = "";
+
+                window.location.reload(); window.location.reload
             } else {
                 alert(data.message);
             }
         })
         .catch(err => console.error(err));
+}
+
+// Função para verificar o número de alunos em uma ficha específica
+function verificaNumAl(ficha) {
+    const contador = ficha.querySelector(".numAl");
+    const numAlu = parseInt(contador.textContent, 10);
+
+    const h1 = ficha.querySelector("h1");
+    const h2 = ficha.querySelector("h2");
+
+    if (numAlu > 1) {
+        h1.style.color = "red";
+        h2.style.color = "red";
+    } else {
+        h1.style.color = "";
+        h2.style.color = "";
+    }
 }
