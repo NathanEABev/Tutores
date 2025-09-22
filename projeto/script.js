@@ -239,6 +239,7 @@ document.getElementById("enviar").addEventListener("click", function () {
         dados =
             "nome=" + encodeURIComponent(alunoAti) +
             "&sala=" + encodeURIComponent(serieAti) +
+            "&atual=" + encodeURIComponent(priAti) +
             "&opcao1=" + encodeURIComponent(priAti) +
             "&opcao2=" + encodeURIComponent(segAti) +
             "&opcao3=" + encodeURIComponent(terAti);
@@ -247,6 +248,7 @@ document.getElementById("enviar").addEventListener("click", function () {
             "nome=" + encodeURIComponent(alunoAti) +
             "&sala=" + encodeURIComponent(serieAti) +
             "&turno=" + encodeURIComponent(turnoAti) +
+            "&atual=" + encodeURIComponent(priAti) +
             "&opcao1=" + encodeURIComponent(priAti) +
             "&opcao2=" + encodeURIComponent(segAti) +
             "&opcao3=" + encodeURIComponent(terAti);

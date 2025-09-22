@@ -24,9 +24,27 @@ include "conexao.php";
                 <img src="close.png" alt="fechar" id="fechaModal" class="fecha">
                 <h1>Opções de <span id="nomeFicha">Aluno</span></h1>
                 <div id="dadosTutores">
-                    <p><strong>Primeira Opção: </strong><span id="priOP">tutor 1</span></p>
-                    <p><strong>Segunda Opção: </strong><span id="segOP">tutor 2</span></p>
-                    <p><strong>Terceira Opção: </strong><span id="terOP">tutor 3</span></p>
+                    <div>
+                        <p><strong>Primeira Opção: </strong><span id="priOP">tutor 1</span></p>
+                        <span class="mudaTutor" id="muda1">Mudar para</span>
+                    </div>
+                    <div>
+                        <p><strong>Segunda Opção: </strong><span id="segOP">tutor 2</span></p>
+                        <span class="mudaTutor" id="muda2">Mudar para</span>
+                    </div>
+                    <div>
+                        <p><strong>Terceira Opção: </strong><span id="terOP">tutor 3</span></p>
+                        <span class="mudaTutor" id="muda3">Mudar para</span>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="outros"><strong>Outro: </strong></label>
+                            <select name="outros" id="outros">
+                                <option value="esse">Selecionar Tutor</option>
+                            </select>
+                        </div>
+                        <span class="mudaTutor" id="muda4">Mudar para</span>
+                    </div>
                 </div>
             </div>
         </div>

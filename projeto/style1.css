@@ -216,7 +216,7 @@ button:hover {
     margin-left: 10px;
 }
 
-#contentModal, #contentTutor {
+#contentTutor {
     background-color: white;
     padding: 20px;
     border: 2px solid black;
@@ -224,8 +224,22 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 500px;
     position: fixed;
-    height: 200px;
+    min-height: 200px;
     top: calc(50% - 100px);
+    left: calc(50% - 250px);
+    z-index: 10;
+}
+
+#contentModal {
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    position: fixed;
+    min-height: 250px;
+    top: calc(50% - 125px);
     left: calc(50% - 250px);
     z-index: 10;
 }
@@ -234,13 +248,31 @@ button:hover {
     display: none;
 }
 
+#dadosTutores div {
+    display: flex;
+    justify-content: space-between;
+}
+
 #contentModal h1, #contentTutor h1 {
     margin-bottom: 20px;
     margin-top: 20px;
 }
 
-#contentModal p {
+#contentModal p, #dadosTutores label, #dadosTutores select {
+    margin-top: 15px;
+}
+
+.mudaTutor {
+    margin-left: 10px;
     margin-top: 10px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background-color: rgb(28, 91, 226);
+    border: 2px solid black;
+}
+
+.mudaTutor:hover {
+    background-color: rgb(20, 66, 165);
 }
 
 #contentModal img, #contentTutor img {

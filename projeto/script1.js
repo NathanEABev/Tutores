@@ -72,20 +72,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     .then(data => {
                         if (data.status === "success") {
                             data.alunos.forEach(aluno => {
-                                const ficha = document.getElementById(aluno.op1)
+                                const ficha = document.getElementById(aluno.atual);
                                 if (ficha) {
                                     const tabela = ficha.querySelector("table")
                                     const linhaAluno = document.createElement("tr")
+                                    linhaAluno.dataset.id = aluno.id;
                                     linhaAluno.dataset.nome = aluno.nome
                                     linhaAluno.dataset.serie = aluno.serie
+                                    linhaAluno.dataset.atual = aluno.atual
                                     linhaAluno.dataset.op1 = aluno.op1
                                     linhaAluno.dataset.op2 = aluno.op2
                                     linhaAluno.dataset.op3 = aluno.op3
 
+                                    linhaAluno.dataset.atual = aluno.atual
                                     linhaAluno.dataset.nomeOp1 = aluno.nome_op1
                                     linhaAluno.dataset.nomeOp2 = aluno.nome_op2
                                     linhaAluno.dataset.nomeOp3 = aluno.nome_op3
-
 
                                     linhaAluno.innerHTML = `
                     <td class="base">${aluno.nome}</td>
@@ -426,41 +428,138 @@ edtTutor.addEventListener("click", () => {
 function clickModal() {
     document.querySelectorAll(".td-mostra").forEach(mostra => {
         mostra.onclick = () => {
-            const linha = mostra.closest("tr")
-            const nome = linha.dataset.nome
-            const nomeOp1 = linha.dataset.nomeOp1
-            const nomeOp2 = linha.dataset.nomeOp2
-            const nomeOp3 = linha.dataset.nomeOp3
+            const linha = mostra.closest("tr");
+            const idAluno = linha.dataset.nome;
+            const nome = linha.dataset.nome;
+            const nomeOp1 = linha.dataset.nomeOp1;
+            const nomeOp2 = linha.dataset.nomeOp2;
+            const nomeOp3 = linha.dataset.nomeOp3;
 
-            document.getElementById("nomeFicha").textContent = nome
+/*linhaAluno.dataset.id = aluno.id;
+                                    linhaAluno.dataset.nome = aluno.nome
+                                    linhaAluno.dataset.serie = aluno.serie
+                                    linhaAluno.dataset.atual = aluno.atual
+                                    linhaAluno.dataset.op1 = aluno.op1
+                                    linhaAluno.dataset.op2 = aluno.op2
+                                    linhaAluno.dataset.op3 = aluno.op3
 
-            const spanPri = document.getElementById("priOP")
-            spanPri.textContent = nomeOp1
-            spanPri.dataset.id = linha.dataset.op1
+                                    linhaAluno.dataset.atual = aluno.atual
+                                    linhaAluno.dataset.nomeOp1 = aluno.nome_op1
+                                    linhaAluno.dataset.nomeOp2 = aluno.nome_op2
+                                    linhaAluno.dataset.nomeOp3 = aluno.nome_op3
+*/
 
-            const spanSeg = document.getElementById("segOP")
-            spanSeg.textContent = nomeOp2
-            spanSeg.dataset.id = linha.dataset.op2
+            document.getElementById("nomeFicha").textContent = nome;
 
-            const spanTer = document.getElementById("terOP")
-            spanTer.textContent = nomeOp3
-            spanTer.dataset.id = linha.dataset.op3
+            // Preenche spans
+            const spanPri = document.getElementById("priOP");
+            spanPri.textContent = nomeOp1;
+            spanPri.dataset.id = linha.dataset.op1;
 
-            modalTutor.style.display = "block"
-            overlay1.style.display = "block"
-            document.body.style.overflow = "hidden"
+            const spanSeg = document.getElementById("segOP");
+            spanSeg.textContent = nomeOp2;
+            spanSeg.dataset.id = linha.dataset.op2;
+
+            const spanTer = document.getElementById("terOP");
+            spanTer.textContent = nomeOp3;
+            spanTer.dataset.id = linha.dataset.op3;
+
+            // Preenche select com todos os tutores
+            const selectOutros = document.getElementById("outros");
+            selectOutros.innerHTML = `<option value="">Selecionar Tutor</option>`;
+            document.querySelectorAll(".iten").forEach(divTutor => {
+                const opt = document.createElement("option");
+                opt.value = divTutor.id;
+                opt.textContent = divTutor.querySelector("h1").textContent;
+                selectOutros.appendChild(opt);
+            });
+
+            // Oculta o botão do tutor onde ele já está
+            const tutorAtual = linha.closest(".iten").id;
+            document.querySelectorAll(".mudaTutor").forEach(btn => btn.style.display = "inline-block");
+            if (tutorAtual === linha.dataset.op1) document.getElementById("muda1").style.display = "none";
+            if (tutorAtual === linha.dataset.op2) document.getElementById("muda2").style.display = "none";
+            if (tutorAtual === linha.dataset.op3) document.getElementById("muda3").style.display = "none";
+
+            // Eventos dos spans
+            document.getElementById("muda1").onclick = () => mudarAlunoDeTutor(idAluno, spanPri.dataset.id);
+            document.getElementById("muda2").onclick = () => mudarAlunoDeTutor(idAluno, spanSeg.dataset.id);
+            document.getElementById("muda3").onclick = () => mudarAlunoDeTutor(idAluno, spanTer.dataset.id);
+            document.getElementById("muda4").onclick = () => {
+                const destino = selectOutros.value;
+                if (destino) mudarAlunoDeTutor(idAluno, destino);
+            };
+
+            // Abre modal
+            modalTutor.style.display = "block";
+            overlay1.style.display = "block";
+            document.body.style.overflow = "hidden";
 
             fechaTutores.onclick = () => {
-                modalTutor.style.display = "none"
-                overlay1.style.display = "none"
-                document.body.style.overflow = ""
-            }
+                modalTutor.style.display = "none";
+                overlay1.style.display = "none";
+                document.body.style.overflow = "";
+            };
 
             overlay1.onclick = () => {
-                modalTutor.style.display = "none"
-                overlay1.style.display = "none"
-                document.body.style.overflow = ""
-            }
-        }
+                modalTutor.style.display = "none";
+                overlay1.style.display = "none";
+                document.body.style.overflow = "";
+            };
+        };
+    });
+}
+
+function mudarAlunoDeTutor(idAluno, tutorDestino) {
+    if (!confirm("Deseja realmente fazer esta alteração?")) return;
+
+    // linha do aluno atual
+    const linha = document.querySelector(`tr[data-nome="${idAluno}"]`);
+    if (!linha) return;
+
+    const atual = linha.dataset.atual;
+    const idAl = linha.dataset.id;
+
+    // se for o mesmo tutor, não faz nada
+    if (atual === tutorDestino) return;
+
+    // Atualiza no backend
+    fetch("link.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `acao=mudarTutor&idAluno=${encodeURIComponent(idAl)}&novoTutor=${encodeURIComponent(tutorDestino)}`
     })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "success") {
+                // --- Atualiza no DOM ---
+
+                // remove aluno da tabela atual
+                linha.remove();
+
+                // atualiza contador do tutor atual
+                const contadorAtual = document.getElementById(atual).querySelector(".numAl");
+                contadorAtual.textContent = document.getElementById(atual).querySelectorAll("table tr").length - 1;
+
+                // adiciona na tabela do tutor destino
+                const fichaDestino = document.getElementById(tutorDestino);
+                if (fichaDestino) {
+                    const tabelaDestino = fichaDestino.querySelector("table");
+                    tabelaDestino.appendChild(linha);
+
+                    // atualiza contador do tutor destino
+                    const contadorDestino = fichaDestino.querySelector(".numAl");
+                    contadorDestino.textContent = tabelaDestino.querySelectorAll("tr").length - 1;
+                }
+
+                alert("Aluno movido com sucesso!");
+
+                modalTutor.style.display = "none";
+                overlay1.style.display = "none";
+                document.body.style.overflow = "";
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(err => console.error(err));
 }

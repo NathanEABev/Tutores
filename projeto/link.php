@@ -35,12 +35,14 @@ if ($acao === "salvar") {
         echo json_encode(["status" => "error", "message" => "Nenhuma configuração encontrada."]);
     }
 } elseif ($acao === "listarAlunos") {
-    $sql = "SELECT a.id, a.nome, a.sala, a.turno, 
+    $sql = "SELECT a.id, a.nome, a.sala, a.turno, a.atual, 
                a.opcao1, a.opcao2, a.opcao3,
+               atual.nome AS nome_atual,
                t1.nome AS nome_op1,
                t2.nome AS nome_op2,
                t3.nome AS nome_op3
         FROM alunos a
+        LEFT JOIN tutores atual ON a.atual = atual.id
         LEFT JOIN tutores t1 ON a.opcao1 = t1.id
         LEFT JOIN tutores t2 ON a.opcao2 = t2.id
         LEFT JOIN tutores t3 ON a.opcao3 = t3.id";
@@ -54,9 +56,11 @@ if ($acao === "salvar") {
                 "nome" => $row["nome"],
                 "serie" => $row["sala"],
                 "turno" => $row["turno"],
+                "atual" => $row["atual"],
                 "op1" => $row["opcao1"],
                 "op2" => $row["opcao2"],
                 "op3" => $row["opcao3"],
+                "nome_atual" => $row["nome_atual"],
                 "nome_op1" => $row["nome_op1"],
                 "nome_op2" => $row["nome_op2"],
                 "nome_op3" => $row["nome_op3"]
@@ -66,6 +70,27 @@ if ($acao === "salvar") {
     } else {
         echo json_encode(["status" => "error", "message" => "Nenhum aluno encontrado."]);
     }
+}
+
+if ($_POST["acao"] === "mudarTutor") {
+    $idAluno = $_POST["idAluno"];
+    $novoTutor = $_POST["novoTutor"];
+
+    $sql = "UPDATE alunos SET atual = ? WHERE id = ?";
+
+    $stmt = $conn->prepare($sql);
+    if ($stmt->execute([$novoTutor, $idAluno])) {
+        echo json_encode([
+            "status" => "success",
+            "message" => "Aluno movido com sucesso!"
+        ]);
+    } else {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Erro ao mover aluno."
+        ]);
+    }
+    exit;
 }
 
 $conn->close();
