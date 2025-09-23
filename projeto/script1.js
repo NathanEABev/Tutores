@@ -521,8 +521,6 @@ function mudarAlunoDeTutor(idAluno, tutorDestino) {
         .then(res => res.json())
         .then(data => {
             if (data.status === "success") {
-                // --- Atualiza no DOM ---
-
                 // remove aluno da tabela atual
                 const fichaAtual = document.getElementById(atual);
                 const tabelaAtual = fichaAtual.querySelector("table");
