@@ -314,3 +314,20 @@ button:hover {
 .inputsTutor input {
     width: 200px;
 }
+
+#paginacaoTutores {
+    min-width: calc(100% - 20px);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+#prevPage {
+    margin-top: 0;
+    margin-left: 10%;
+}
+
+#nextPage {
+    margin-top: 0;
+    margin-right: 10%;
+}

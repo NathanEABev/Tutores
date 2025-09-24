@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             if (data.status === "success") {
                 const tabela = document.getElementById("tabelaTutores")
+                const fichas = document.getElementById("fichas")
 
                 data.tutores.forEach(tutor => {
                     const linha = document.createElement("tr")
@@ -52,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
 
                 aplicarEventos()
+                paginarTabela("tabelaTutores", 5)
 
                 function formatarSerie(serie) {
                     if (!serie) return "";
@@ -287,6 +289,7 @@ salvarTutor.addEventListener("click", () => {
                         </svg></td>
             `
                 tabela.appendChild(novaLinha)
+                paginarTabela("tabelaTutores", 5)
                 aplicarEventos()
 
                 const fichas = document.getElementById("fichas")
@@ -378,6 +381,8 @@ function aplicarEventos() {
                             linha.remove()
                             const card = document.getElementById(id)
                             if (card) card.remove()
+
+                            paginarTabela("tabelaTutores", 5)
                         } else {
                             alert(data.message)
                         }
@@ -572,4 +577,83 @@ function verificaNumAl(ficha) {
         h1.style.color = "";
         h2.style.color = "";
     }
+}
+
+function paginarTabela(tabelaId, itensPorPagina = 5) {
+    const tabela = document.getElementById(tabelaId);
+    if (!tabela) return;
+
+    // detecta linhas de cabeçalho (thead ou <th>)
+    const thead = tabela.querySelector("thead");
+    let headerRows = [];
+    if (thead) {
+        headerRows = Array.from(thead.querySelectorAll("tr"));
+    } else if (tabela.querySelector("tr th")) {
+        headerRows = [tabela.querySelector("tr")];
+    }
+
+    const allRows = Array.from(tabela.querySelectorAll("tr"));
+    const dataRows = allRows.filter(r => !headerRows.includes(r));
+
+    // cria controles se não existirem
+    let pagContainer = document.getElementById("paginacaoTutores");
+    if (!pagContainer) {
+        pagContainer = document.createElement("div");
+        pagContainer.id = "paginacaoTutores";
+        pagContainer.style.marginTop = "8px";
+        pagContainer.style.display = "flex";
+        pagContainer.style.alignItems = "center";
+        pagContainer.style.gap = "8px";
+
+        const prevBtn = document.createElement("button");
+        prevBtn.id = "prevPage";
+        prevBtn.type = "button";
+        prevBtn.textContent = "Anterior";
+
+        const pageInfo = document.createElement("span");
+        pageInfo.id = "pageInfo";
+
+        const nextBtn = document.createElement("button");
+        nextBtn.id = "nextPage";
+        nextBtn.type = "button";
+        nextBtn.textContent = "Próximo";
+
+        pagContainer.appendChild(prevBtn);
+        pagContainer.appendChild(pageInfo);
+        pagContainer.appendChild(nextBtn);
+
+        // insere depois da tabela
+        tabela.parentNode.insertBefore(pagContainer, tabela.nextSibling);
+    }
+
+    const prevPageBtn = document.getElementById("prevPage");
+    const nextPageBtn = document.getElementById("nextPage");
+    const pageInfoSpan = document.getElementById("pageInfo");
+
+    const totalPaginas = Math.max(1, Math.ceil(dataRows.length / itensPorPagina));
+    let paginaAtual = 1;
+
+    function mostrarPagina(pagina) {
+        if (pagina < 1) pagina = 1;
+        if (pagina > totalPaginas) pagina = totalPaginas;
+
+        dataRows.forEach((row, idx) => {
+            row.style.display = (idx >= (pagina - 1) * itensPorPagina && idx < pagina * itensPorPagina) ? "" : "none";
+        });
+
+        // mantém o header visível
+        headerRows.forEach(hr => { if (hr) hr.style.display = ""; });
+
+        pageInfoSpan.textContent = `Página ${pagina} de ${totalPaginas}`;
+        prevPageBtn.disabled = pagina === 1;
+        nextPageBtn.disabled = pagina === totalPaginas;
+        paginaAtual = pagina;
+    }
+
+    // substitui handlers (evita duplicar listeners)
+    prevPageBtn.onclick = () => mostrarPagina(paginaAtual - 1);
+    nextPageBtn.onclick = () => mostrarPagina(paginaAtual + 1);
+
+    // mostra a página inicial (1)
+    mostrarPagina(1);
 }

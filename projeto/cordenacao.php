@@ -106,9 +106,9 @@ include "conexao.php";
             </div>
         </aside>
         <aside>
-            <h1>Tutores:</h1>
+            <h1>Gerenciar Tutores:</h1>
             <button id="addTutor">Adicionar Tutor</button>
-            <table id="tabelaTutores">
+            <table>
                 <tr>
                     <td class="TutorName">Nome</td>
                     <td class="clube">Clube</td>
@@ -116,6 +116,7 @@ include "conexao.php";
                     <td class="exc">Excluir</td>
                 </tr>
             </table>
+            <table id="tabelaTutores"></table>
             <div id="modalTutor">
                 <div id="contentTutor">
                     <img src="close.png" alt="fechar" id="fechaTutor" class="fecha">
@@ -133,6 +134,11 @@ include "conexao.php";
                 </div>
             </div>
         </aside>
+        <div id="paginacaoTutores">
+                <button id="prevPage">&lt; Anterior</button>
+                <span id="pageInfo"></span>
+                <button id="nextPage">Próximo &gt;</button>
+            </div>
         <div id="overlay1"></div>
     </main>
 
