@@ -174,9 +174,17 @@ button:hover {
     margin-top: 10px;
 }
 
+#tabelaMedio {
+    margin-bottom: 40px;
+}
+
 #dBut {
+    width: calc(100% - 15px);
     text-align: end;
-    margin-top: 1em;
+    padding-right:  10px 15px 10px 0;
+    position: fixed;
+    bottom: 10px;
+    background-color: white;
 }
 
 #overlay1 {
