@@ -67,40 +67,152 @@ include "conexao.php";
                 <img src="close.png" id="fechaPop" class="fecha">
                 <h3>Gerenciador de séries</h3>
                 <div id="scroll">
-                    <!--<h4>Fundamental</h4>
-                    <table>
+                    <h4>Fundamental</h4>
+                    <table id="fundamental">
                         <tr>
                             <td class="texto">6º A</td>
-                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox" id="A6"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">6º B</td>
+                            <td class="checkbox"><input type="checkbox" id="B6"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">6º C</td>
+                            <td class="checkbox"><input type="checkbox" id="C6"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">6º D</td>
+                            <td class="checkbox"><input type="checkbox" id="D6"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">6º E</td>
+                            <td class="checkbox"><input type="checkbox" id="E6"></td>
                         </tr>
                         <tr>
                             <td class="texto">7º A</td>
-                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox" id="A7"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">7º B</td>
+                            <td class="checkbox"><input type="checkbox" id="B7"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">7º C</td>
+                            <td class="checkbox"><input type="checkbox" id="C7"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">7º D</td>
+                            <td class="checkbox"><input type="checkbox" id="D7"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">7º E</td>
+                            <td class="checkbox"><input type="checkbox" id="E7"></td>
                         </tr>
                         <tr>
                             <td class="texto">8º A</td>
-                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox" id="A8"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">8º B</td>
+                            <td class="checkbox"><input type="checkbox" id="B8"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">8º C</td>
+                            <td class="checkbox"><input type="checkbox" id="C8"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">8º D</td>
+                            <td class="checkbox"><input type="checkbox" id="D8"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">8º E</td>
+                            <td class="checkbox"><input type="checkbox" id="E8"></td>
                         </tr>
                         <tr>
                             <td class="texto">9º A</td>
-                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox" id="A9"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">9º B</td>
+                            <td class="checkbox"><input type="checkbox" id="B9"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">9º C</td>
+                            <td class="checkbox"><input type="checkbox" id="C9"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">9º D</td>
+                            <td class="checkbox"><input type="checkbox" id="D9"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">9º E</td>
+                            <td class="checkbox"><input type="checkbox" id="E9"></td>
                         </tr>
                     </table>
                     <h4 id="meio">Médio</h4>
-                    <table>
+                    <table id="tabelaMedio">
                         <tr>
                             <td class="texto">1º A</td>
-                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox" id="A1"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">1º B</td>
+                            <td class="checkbox"><input type="checkbox" id="B1"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">1º C</td>
+                            <td class="checkbox"><input type="checkbox" id="C1"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">1º D</td>
+                            <td class="checkbox"><input type="checkbox" id="D1"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">1º E</td>
+                            <td class="checkbox"><input type="checkbox" id="E1"></td>
                         </tr>
                         <tr>
                             <td class="texto">2º A</td>
-                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox" id="A2"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">2º B</td>
+                            <td class="checkbox"><input type="checkbox" id="B2"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">2º C</td>
+                            <td class="checkbox"><input type="checkbox" id="C2"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">2º D</td>
+                            <td class="checkbox"><input type="checkbox" id="D2"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">2º E</td>
+                            <td class="checkbox"><input type="checkbox" id="E2"></td>
                         </tr>
                         <tr>
                             <td class="texto">3º A</td>
-                            <td class="checkbox"><input type="checkbox"></td>
+                            <td class="checkbox"><input type="checkbox" id="A3"></td>
                         </tr>
-                    </table>-->
+                        <tr>
+                            <td class="texto">3º B</td>
+                            <td class="checkbox"><input type="checkbox" id="B3"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">3º C</td>
+                            <td class="checkbox"><input type="checkbox" id="C3"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">3º D</td>
+                            <td class="checkbox"><input type="checkbox" id="D3"></td>
+                        </tr>
+                        <tr>
+                            <td class="texto">3º E</td>
+                            <td class="checkbox"><input type="checkbox" id="E3"></td>
+                        </tr>
+                    </table>
                     <div id="dBut"><button id="serAlt">Salvar alterações</button></div>
                 </div>
             </div>

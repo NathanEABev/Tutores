@@ -171,26 +171,72 @@ abPSala.addEventListener("click", function () {
     overlay1.style.display = "block"
     document.body.style.overflow = "hidden"
 
-    fechaSala.addEventListener("click", function () {
-        PSala.style.display = "none"
-        overlay1.style.display = "none"
-        document.body.style.overflow = ""
+    fetch("link.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "acao=listarSalas"
     })
-
-    overlay1.addEventListener("click", function () {
-        PSala.style.display = "none"
-        overlay1.style.display = "none"
-        document.body.style.overflow = ""
+    .then(res => {
+        if (!res.ok) {
+            throw new Error('A resposta do servidor não foi OK');
+        }
+        return res.json();
     })
-
-    enviaSala.addEventListener("click", function () {
-        alert("Substitui pelo código do db")
-
-        PSala.style.display = "none"
-        overlay1.style.display = "none"
-        document.body.style.overflow = ""
+    .then(data => {
+        if (data.status === "success") {
+            const checkboxes = document.querySelectorAll("#scroll input[type='checkbox']");
+            checkboxes.forEach(cb => {
+                cb.checked = data.salas.includes(cb.id);
+            });
+        } else {
+            console.error("Erro ao listar salas:", data.message);
+        }
     })
+    .catch(err => console.error("Erro no fetch ao listar salas:", err));
 })
+
+enviaSala.addEventListener("click", function () {
+    const checkboxes = document.querySelectorAll("#scroll input[type='checkbox']");
+    const selecionadas = [];
+
+    checkboxes.forEach(cb => {
+        // Envia apenas as salas que foram marcadas
+        if (cb.checked) {
+            selecionadas.push(cb.id);
+        }
+    });
+
+    fetch("link.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `acao=salvarSalas&salas=${encodeURIComponent(JSON.stringify(selecionadas))}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert("Salas salvas com sucesso!");
+        } else {
+            alert("Erro: " + data.message);
+        }
+    })
+    .catch(err => console.error("Erro ao salvar salas:", err));
+
+    // Fecha o popup após salvar
+    PSala.style.display = "none";
+    overlay1.style.display = "none";
+    document.body.style.overflow = "";
+});
+
+
+// fechar pop-up da sala
+function fecharPopupSalas() {
+    PSala.style.display = "none";
+    overlay1.style.display = "none";
+    document.body.style.overflow = "";
+}
+
+fechaSala.addEventListener("click", fecharPopupSalas);
+overlay1.addEventListener("click", fecharPopupSalas);
 
 //pop-up opções
 
