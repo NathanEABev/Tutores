@@ -47,13 +47,26 @@ if ($acao === "salvar") {
     if ($result && $result->num_rows > 0) {
         $alunos = [];
         while ($row = $result->fetch_assoc()) {
-            $alunos[] = $row;
+            $alunos[] = [
+                "id" => $row["id"],
+                "nome" => $row["nome"],
+                "serie" => $row["sala"],                
+                "turno" => $row["turno"],               
+                "atual" => $row["atual"],               
+                "op1" => $row["opcao1"],                
+                "op2" => $row["opcao2"],                
+                "op3" => $row["opcao3"],                
+                "nome_atual" => $row["nome_atual"],             
+                "nome_op1" => $row["nome_op1"],             
+                "nome_op2" => $row["nome_op2"],             
+                "nome_op3" => $row["nome_op3"]
+            ];
         }
         $resposta = ["status" => "success", "alunos" => $alunos];
     } else {
         $resposta = ["status" => "error", "message" => "Nenhum aluno encontrado."];
     }
-}/* elseif ($acao === "mudarTutor") {
+} elseif ($acao === "mudarTutor") {
     // ETAPA 1: Garantir que os dados recebidos são do tipo correto (inteiros).
     // A função (int) força a conversão para número inteiro. Isso é mais seguro.
     // O '?? 0' garante que se a variável não existir, ela se torna 0.
@@ -79,7 +92,7 @@ if ($acao === "salvar") {
         $resposta = ["status" => "error", "message" => "ID de aluno inválido ou não fornecido."];
     }
 
-}*/ elseif ($acao === "listarSalas") {
+} elseif ($acao === "listarSalas") {
     $sql = "SELECT nome FROM salas WHERE ativo = 1";
     $result = $conn->query($sql);
     $salas_ativas = [];

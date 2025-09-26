@@ -176,23 +176,23 @@ abPSala.addEventListener("click", function () {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: "acao=listarSalas"
     })
-    .then(res => {
-        if (!res.ok) {
-            throw new Error('A resposta do servidor não foi OK');
-        }
-        return res.json();
-    })
-    .then(data => {
-        if (data.status === "success") {
-            const checkboxes = document.querySelectorAll("#scroll input[type='checkbox']");
-            checkboxes.forEach(cb => {
-                cb.checked = data.salas.includes(cb.id);
-            });
-        } else {
-            console.error("Erro ao listar salas:", data.message);
-        }
-    })
-    .catch(err => console.error("Erro no fetch ao listar salas:", err));
+        .then(res => {
+            if (!res.ok) {
+                throw new Error('A resposta do servidor não foi OK');
+            }
+            return res.json();
+        })
+        .then(data => {
+            if (data.status === "success") {
+                const checkboxes = document.querySelectorAll("#scroll input[type='checkbox']");
+                checkboxes.forEach(cb => {
+                    cb.checked = data.salas.includes(cb.id);
+                });
+            } else {
+                console.error("Erro ao listar salas:", data.message);
+            }
+        })
+        .catch(err => console.error("Erro no fetch ao listar salas:", err));
 })
 
 enviaSala.addEventListener("click", function () {
@@ -211,15 +211,15 @@ enviaSala.addEventListener("click", function () {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: `acao=salvarSalas&salas=${encodeURIComponent(JSON.stringify(selecionadas))}`
     })
-    .then(res => res.json())
-    .then(data => {
-        if (data.status === "success") {
-            alert("Salas salvas com sucesso!");
-        } else {
-            alert("Erro: " + data.message);
-        }
-    })
-    .catch(err => console.error("Erro ao salvar salas:", err));
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "success") {
+                alert("Salas salvas com sucesso!");
+            } else {
+                alert("Erro: " + data.message);
+            }
+        })
+        .catch(err => console.error("Erro ao salvar salas:", err));
 
     // Fecha o popup após salvar
     PSala.style.display = "none";
@@ -588,6 +588,9 @@ function mudarAlunoDeTutor(idAluno, tutorDestino) {
                     const tabelaDestino = fichaDestino.querySelector("table");
                     tabelaDestino.appendChild(linha);
 
+                    // atualiza dataset do aluno para o novo tutor
+                    linha.dataset.atual = tutorDestino;
+
                     // atualiza contador e cor da ficha destino
                     const contadorDestino = fichaDestino.querySelector(".numAl");
                     contadorDestino.textContent = tabelaDestino.querySelectorAll("tr").length - 1;
@@ -599,8 +602,6 @@ function mudarAlunoDeTutor(idAluno, tutorDestino) {
                 modalTutor.style.display = "none";
                 overlay1.style.display = "none";
                 document.body.style.overflow = "";
-
-                window.location.reload(); window.location.reload
             } else {
                 alert(data.message);
             }
