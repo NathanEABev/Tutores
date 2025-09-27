@@ -131,10 +131,13 @@ button {
     padding: 5px 10px;
     border-radius: 15px;
     background-color: rgb(28, 91, 226);
+    transition: 0.5s;
 }
 
 button:hover {
-    background-color: rgb(20, 66, 165);
+    background-color: rgb(12, 40, 99);
+    color: white;
+    transition: 0.3s;
 }
 
 #popSala {
@@ -280,7 +283,9 @@ button:hover {
 }
 
 .mudaTutor:hover {
-    background-color: rgb(20, 66, 165);
+    background-color: rgb(12, 40, 99);
+    color: white;
+    transition: 0.3s;
 }
 
 #contentModal img, #contentTutor img {
@@ -338,4 +343,40 @@ button:hover {
 #nextPage {
     margin-top: 0;
     margin-right: 10%;
+}
+
+.btn-toggle {
+    padding: 15px;
+    width: 100%;
+    border-top: 1px solid rgb(177, 177, 177); 
+    border-bottom: 1px solid rgb(177, 177, 177); 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-toggle:hover, .btn-toggle.active {
+    background-color: rgb(220, 220, 220);
+}
+
+.btn-toggle svg {
+    margin-right: 24px;
+    transition: transform 0.3s ease;
+}
+
+.btn-toggle.active svg {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+.togle-cont {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease-out;
+}
+
+.texto:hover {
+    text-decoration: underline;
+    color: rgb(20, 66, 165);
 }

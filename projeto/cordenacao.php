@@ -68,151 +68,221 @@ include "conexao.php";
                 <h3>Gerenciador de séries</h3>
                 <div id="scroll">
                     <h4>Fundamental</h4>
-                    <table id="fundamental">
-                        <tr>
-                            <td class="texto">6º A</td>
-                            <td class="checkbox"><input type="checkbox" id="A6"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">6º B</td>
-                            <td class="checkbox"><input type="checkbox" id="B6"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">6º C</td>
-                            <td class="checkbox"><input type="checkbox" id="C6"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">6º D</td>
-                            <td class="checkbox"><input type="checkbox" id="D6"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">6º E</td>
-                            <td class="checkbox"><input type="checkbox" id="E6"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">7º A</td>
-                            <td class="checkbox"><input type="checkbox" id="A7"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">7º B</td>
-                            <td class="checkbox"><input type="checkbox" id="B7"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">7º C</td>
-                            <td class="checkbox"><input type="checkbox" id="C7"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">7º D</td>
-                            <td class="checkbox"><input type="checkbox" id="D7"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">7º E</td>
-                            <td class="checkbox"><input type="checkbox" id="E7"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">8º A</td>
-                            <td class="checkbox"><input type="checkbox" id="A8"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">8º B</td>
-                            <td class="checkbox"><input type="checkbox" id="B8"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">8º C</td>
-                            <td class="checkbox"><input type="checkbox" id="C8"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">8º D</td>
-                            <td class="checkbox"><input type="checkbox" id="D8"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">8º E</td>
-                            <td class="checkbox"><input type="checkbox" id="E8"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">9º A</td>
-                            <td class="checkbox"><input type="checkbox" id="A9"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">9º B</td>
-                            <td class="checkbox"><input type="checkbox" id="B9"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">9º C</td>
-                            <td class="checkbox"><input type="checkbox" id="C9"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">9º D</td>
-                            <td class="checkbox"><input type="checkbox" id="D9"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">9º E</td>
-                            <td class="checkbox"><input type="checkbox" id="E9"></td>
-                        </tr>
-                    </table>
+                    <div id="fundamental">
+                        <div class="cont-toggle">
+                            <div class="btn-toggle">
+                                <p>6ª série</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343"><path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </div>
+                            <div class="togle-cont">
+                                <table>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">6º A</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="A6"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">6º B</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="B6"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">6º C</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="C6"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">6º D</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="D6"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">6º E</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="E6"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="cont-toggle">
+                            <div class="btn-toggle">
+                                <p>7ª série</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343"><path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </div>
+                            <div class="togle-cont">
+                                <table>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">7º A</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="A7"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">7º B</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="B7"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">7º C</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="C7"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">7º D</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="D7"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">7º E</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="E7"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="cont-toggle">
+                            <div class="btn-toggle">
+                                <p>8ª série</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343"><path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </div>
+                            <div class="togle-cont">
+                                <table>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">8º A</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="A8"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">8º B</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="B8"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">8º C</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="C8"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">8º D</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="D8"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">8º E</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="E8"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="cont-toggle">
+                            <div class="btn-toggle">
+                                <p>9ª série</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343"><path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </div>
+                            <div class="togle-cont">
+                                <table>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">9º A</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="A9"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">9º B</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="B9"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">9º C</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="C9"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">9º D</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="D9"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">9º E</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="E9"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     <h4 id="meio">Médio</h4>
-                    <table id="tabelaMedio">
-                        <tr>
-                            <td class="texto">1º A</td>
-                            <td class="checkbox"><input type="checkbox" id="A1"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">1º B</td>
-                            <td class="checkbox"><input type="checkbox" id="B1"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">1º C</td>
-                            <td class="checkbox"><input type="checkbox" id="C1"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">1º D</td>
-                            <td class="checkbox"><input type="checkbox" id="D1"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">1º E</td>
-                            <td class="checkbox"><input type="checkbox" id="E1"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">2º A</td>
-                            <td class="checkbox"><input type="checkbox" id="A2"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">2º B</td>
-                            <td class="checkbox"><input type="checkbox" id="B2"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">2º C</td>
-                            <td class="checkbox"><input type="checkbox" id="C2"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">2º D</td>
-                            <td class="checkbox"><input type="checkbox" id="D2"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">2º E</td>
-                            <td class="checkbox"><input type="checkbox" id="E2"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">3º A</td>
-                            <td class="checkbox"><input type="checkbox" id="A3"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">3º B</td>
-                            <td class="checkbox"><input type="checkbox" id="B3"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">3º C</td>
-                            <td class="checkbox"><input type="checkbox" id="C3"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">3º D</td>
-                            <td class="checkbox"><input type="checkbox" id="D3"></td>
-                        </tr>
-                        <tr>
-                            <td class="texto">3º E</td>
-                            <td class="checkbox"><input type="checkbox" id="E3"></td>
-                        </tr>
-                    </table>
+                    <div id="tabelaMedio">
+                        <div class="cont-toggle">
+                            <div class="btn-toggle">
+                                <p>1ª série</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343"><path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </div>
+                            <div class="togle-cont">
+                                <table>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">1º A</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="A1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">1º B</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="B1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">1º C</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="C1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">1º D</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="D1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">1º E</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="E1"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="cont-toggle">
+                            <div class="btn-toggle">
+                                <p>2ª série</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343"><path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </div>
+                            <div class="togle-cont">
+                                <table>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">2º A</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="A2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">2º B</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="B2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">2º C</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="C2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">2º D</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="D2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">2º E</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="E2"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="cont-toggle">
+                            <div class="btn-toggle">
+                                <p>3ª série</p>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#434343"><path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                            </div>
+                            <div class="togle-cont">
+                                <table>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">3º A</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="A3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">3º B</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="B3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">3º C</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="C3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">3º D</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="D3"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="texto" title="Deseja mudar o nome de exibição?"><p class="serie-nome">3º E</p></td>
+                                        <td class="checkbox"><input type="checkbox" id="E3"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                     <div id="dBut"><button id="serAlt">Salvar alterações</button></div>
                 </div>
             </div>

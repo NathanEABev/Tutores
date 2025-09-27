@@ -147,6 +147,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert(data.message);
             });
     });
+
+    const menusToggle = document.querySelectorAll(".btn-toggle")
+
+    menusToggle.forEach(btn => {
+        btn.addEventListener("click", function () {
+            this.classList.toggle("active");
+            const content = this.nextElementSibling;
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        })
+    })
 })
 
 //scroll horizontal

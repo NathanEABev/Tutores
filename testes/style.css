@@ -1,0 +1,43 @@
+/* Estilos gerais para a página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Estilo do cabeçalho clicável */
+.accordion-header {
+    background-color: #007BFF;
+    color: white;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 18px;
+    cursor: pointer; /* Muda o cursor para uma "mãozinha", indicando que é clicável */
+    transition: background-color 0.3s ease; /* Transição suave na cor de fundo */
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+/* Efeito visual ao passar o mouse ou quando o menu está ativo */
+.accordion-header:hover, .accordion-header.active {
+    background-color: #0056b3; /* Um azul um pouco mais escuro */
+}
+
+/* Estilo do conteúdo que abre e fecha */
+.accordion-content {
+    background-color: white;
+    overflow: hidden; /* Essencial para que o conteúdo não "vaze" para fora enquanto a altura é 0 */
+    max-height: 0; /* Começa fechado, sem altura máxima */
+    transition: max-height 0.4s ease-out; /* A ANIMAÇÃO! Transição suave para a propriedade max-height */
+    padding: 0 15px; /* Adiciona padding horizontal, mas não vertical quando fechado */
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
