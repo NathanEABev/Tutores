@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     novaDiv.id = tutor.id
                     novaDiv.innerHTML = `
                         <div>
-                            <h1>${tutor.nome}</h1>
+                            <h1 title="Clube: ${tutor.clube}">${tutor.nome}</h1>
                             <h2>Alunos: <span class="numAl">0</span></h2>
                         </div>
                         <table>
@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 function formatarSerie(serie) {
                     if (!serie) return "";
-                    const numero = serie.replace(/[^0-9]/g, ""); // só o número
-                    const letra = serie.replace(/[^a-zA-Z]/g, "").toUpperCase(); // só a letra
+                    const numero = serie.replace(/[^0-9]/g, "");
+                    const letra = serie.replace(/[^a-zA-Z]/g, "").toUpperCase();
                     return `${numero}º${letra}`;
                 }
 
@@ -147,6 +147,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert(data.message);
             });
     });
+
+    //funcionamento dos toggles de séries
 
     const menusToggle = document.querySelectorAll(".btn-toggle")
 
@@ -360,7 +362,7 @@ salvarTutor.addEventListener("click", () => {
                 novaDiv.id = data.id
                 novaDiv.innerHTML = `
                     <div>
-                        <h1>${data.nome}</h1>
+                        <h1 title="Clube: ${data.clube}">${data.nome}</h1>
                         <h2>Alunos: <span class="numAl">0</span></h2>
                     </div>
                     <table>
@@ -475,6 +477,7 @@ edtTutor.addEventListener("click", () => {
                 const card = document.getElementById(id)
                 if (card) {
                     card.querySelector("h1").textContent = nome
+                    card.querySelector("h1").title = "Clube: " + clube
                 }
 
                 InNome.value = ""

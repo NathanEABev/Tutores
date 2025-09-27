@@ -67,24 +67,18 @@ if ($acao === "salvar") {
         $resposta = ["status" => "error", "message" => "Nenhum aluno encontrado."];
     }
 } elseif ($acao === "mudarTutor") {
-    // ETAPA 1: Garantir que os dados recebidos são do tipo correto (inteiros).
-    // A função (int) força a conversão para número inteiro. Isso é mais seguro.
-    // O '?? 0' garante que se a variável não existir, ela se torna 0.
     $idAluno = (int) ($_POST["idAluno"] ?? 0);
     $novoTutor = (int) ($_POST["novoTutor"] ?? 0);
 
-    // ETAPA 2: Adicionar uma verificação para garantir que temos IDs válidos antes de ir ao banco.
-    if ($idAluno > 0) { // O ID do aluno deve ser maior que zero. O novo tutor pode ser 0 para "desatribuir".
+    if ($idAluno > 0) {
         $sql = "UPDATE alunos SET atual = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
-        // ETAPA 3: Usar "ii" porque agora temos certeza que são inteiros.
         $stmt->bind_param("ii", $novoTutor, $idAluno);
 
         if ($stmt->execute()) {
             $resposta = ["status" => "success", "message" => "Aluno movido com sucesso!"];
         } else {
-            // Adiciona a mensagem de erro do statement para facilitar a depuração
             $resposta = ["status" => "error", "message" => "Erro ao executar a atualização: " . $stmt->error];
         }
         $stmt->close();

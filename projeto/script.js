@@ -4,9 +4,36 @@ let modoTurno = "2";
 
 let unico
 
+let salasAtivas = [];
+
 //identificação de turno e carregamento de tutores
 
 document.addEventListener("DOMContentLoaded", () => {
+    // configuração das séries ativas
+
+    fetch("link.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: "acao=listarSalas"
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "success") {
+                salasAtivas = data.salas;
+
+                // monta os arrays dinamicamente
+                unico = salasAtivas;
+
+                opSerie = {
+                    tur1: salasAtivas.filter(s => ["6", "7", "8", "9"].includes(s.slice(1))),
+                    tur2: salasAtivas.filter(s => ["1", "2", "3"].includes(s.slice(1)))
+                };
+            } else {
+                console.error("Erro:", data.message);
+            }
+        })
+        .catch(err => console.error("Erro no fetch de salas:", err));
+
     //verifica o modo de turno
     fetch("link.php", {
         method: "POST",
@@ -21,8 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.getElementById("aTurno").style.display = "none";
                     seleSerie.disabled = false;
                     turnoAti = "unico"
-
-                    unico = ["A6", "B6", "C6", "A7", "B7", "C7", "A8", "B8", "C8", "A9", "B9", "C9", "A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"]
 
                     if (turnoAti != "seleTur") {
                         seleSerie.innerHTML = '<option value="seleSer" selected>Selecione a série</option>'
@@ -133,13 +158,6 @@ var terAti = "seleTer"
 SeleTerceira.addEventListener("change", function () {
     terAti = SeleTerceira.value
 });
-
-//opções com base no turno
-
-let opSerie = {
-    tur1: ["A6", "B6", "C6", "A7", "B7", "C7", "A8", "B8", "C8", "A9", "B9", "C9"],
-    tur2: ["A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"],
-}
 
 //padrão dos selects
 
