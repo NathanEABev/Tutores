@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </svg></td>
                     `
                     tabela.appendChild(linha)
+                    ordenarTabelaTutores();
 
                     const novaDiv = document.createElement("div")
                     novaDiv.classList.add("iten")
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </table>
                     `
                     fichas.appendChild(novaDiv)
+                    ordenarFichas();
                 })
 
                 aplicarEventos()
@@ -97,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td class="td-tutores"><span class="td-mostra">Mostrar</span></td>
                 `
                                     tabela.appendChild(linhaAluno)
+                                    ordenarAlunosNasFichas();
 
                                     const contador = ficha.querySelector(".numAl");
                                     let numAlu = tabela.querySelectorAll("tr").length - 1;
@@ -105,6 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                                     verificaNumAl(ficha)
                                     clickModal()
+                                    ordenarFichas();
                                 }
                             })
                         } else {
@@ -217,7 +221,6 @@ enviaSala.addEventListener("click", function () {
     const selecionadas = [];
 
     checkboxes.forEach(cb => {
-        // Envia apenas as salas que foram marcadas
         if (cb.checked) {
             selecionadas.push(cb.id);
         }
@@ -238,7 +241,6 @@ enviaSala.addEventListener("click", function () {
         })
         .catch(err => console.error("Erro ao salvar salas:", err));
 
-    // Fecha o popup após salvar
     PSala.style.display = "none";
     overlay1.style.display = "none";
     document.body.style.overflow = "";
@@ -246,6 +248,7 @@ enviaSala.addEventListener("click", function () {
 
 
 // fechar pop-up da sala
+
 function fecharPopupSalas() {
     PSala.style.display = "none";
     overlay1.style.display = "none";
@@ -352,6 +355,7 @@ salvarTutor.addEventListener("click", () => {
                         </svg></td>
             `
                 tabela.appendChild(novaLinha)
+                ordenarTabelaTutores();
                 paginarTabela("tabelaTutores", 5)
                 aplicarEventos()
 
@@ -375,6 +379,7 @@ salvarTutor.addEventListener("click", () => {
                 `
 
                 fichas.appendChild(novaDiv)
+                ordenarFichas();
 
 
                 InNome.value = ""
@@ -482,6 +487,8 @@ edtTutor.addEventListener("click", () => {
 
                 InNome.value = ""
                 InClube.value = ""
+
+                ordenarTabelaTutores();
 
                 alert("Tutor atualizado com sucesso!")
             } else {
@@ -615,6 +622,8 @@ function mudarAlunoDeTutor(idAluno, tutorDestino) {
                     verificaNumAl(fichaDestino);
                 }
 
+                ordenarFichas();
+                ordenarAlunosNasFichas();
                 alert("Aluno movido com sucesso!");
 
                 modalTutor.style.display = "none";
@@ -721,4 +730,53 @@ function paginarTabela(tabelaId, itensPorPagina = 5) {
 
     // mostra a página inicial (1)
     mostrarPagina(1);
+}
+
+// reorganização de tutores
+
+function ordenarTabelaTutores() {
+    const tabela = document.getElementById("tabelaTutores");
+    const linhas = Array.from(tabela.querySelectorAll("tr[data-id]"));
+
+    linhas.sort((a, b) => {
+        const nomeA = a.querySelector(".TutorName").textContent.trim().toLowerCase();
+        const nomeB = b.querySelector(".TutorName").textContent.trim().toLowerCase();
+        return nomeA.localeCompare(nomeB, "pt-BR");
+    });
+
+    linhas.forEach(l => tabela.appendChild(l));
+}
+
+function ordenarFichas() {
+    const container = document.getElementById("fichas");
+    const fichas = Array.from(container.querySelectorAll(".iten"));
+
+    fichas.sort((a, b) => {
+        const numA = parseInt(a.querySelector(".numAl").textContent, 10);
+        const numB = parseInt(b.querySelector(".numAl").textContent, 10);
+        return numB - numA;
+    });
+
+    fichas.forEach(f => container.appendChild(f));
+}
+
+// reorganiza alunos
+
+function ordenarAlunosNasFichas() {
+    const fichas = document.querySelectorAll(".iten");
+
+    fichas.forEach(ficha => {
+        const tabela = ficha.querySelector("table");
+        if (!tabela) return;
+
+        const linhas = Array.from(tabela.querySelectorAll("tr")).slice(1);
+
+        linhas.sort((a, b) => {
+            const nomeA = a.querySelector(".base").textContent.trim().toLowerCase();
+            const nomeB = b.querySelector(".base").textContent.trim().toLowerCase();
+            return nomeA.localeCompare(nomeB, "pt-BR");
+        });
+
+        linhas.forEach(l => tabela.appendChild(l));
+    });
 }
